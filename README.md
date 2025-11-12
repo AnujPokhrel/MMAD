@@ -8,18 +8,21 @@
 
 ![CombinedTrajectories](./CombinedTrajectories.png)
 
-*Above: The DOM planner predicts airborne kinodynamics for controlled in-air attitude correction (top: DOM planner, bottom: open-loop baseline).*
+*DOM enables accurate and timely in-air maneuvers for safe vehicle landings during high-speed off-road navigation. Top: DOM Planner prepares the vehicle for flat landing. Bottom: Without DOM, improper in-air attitude results in failure.*
 
 ---
 
 ## 🧠 Overview
 
-**DOM (Dynamics-Optimized Maneuvering)** enables off-road wheeled robots to perform stable **in-air maneuvers** by predicting 6-DoF rotational evolution during flight.  
-It combines a learned neural kinodynamic model with a physics-informed planner that anticipates roll-pitch-yaw evolution and actively corrects mid-air attitude to ensure a safe landing.
+When pushing the speed limit for aggressive off-road navigation on uneven terrain, vehicles inevitably become airborne.  
+**DOM (Dynamics-Optimized Maneuvering)** is a motion planning framework that enables **precise in-air vehicle control** using only throttle and steering commands.  
+It combines a **hybrid kinodynamic model (PHLI: PHysics and Learning-based model for In-air vehicle maneuver)** with a **fixed-horizon sampling-based motion planner (Dom Planner)** to achieve safe and timely landing poses within short airborne durations.
+
+DOM is the first approach to demonstrate that **existing ground vehicle controls** can be repurposed to achieve accurate in-air attitude correction, ensuring stable landings and preventing mission failures caused by mid-air instabilities.
 
 ---
 
-## 📦 Requirements
+## 📦 Installation 
 
 Clone the repository and install the dependencies:
 
@@ -29,3 +32,25 @@ cd MMAD
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
+
+## Neural Model Details
+Input: [rpm, rpm_dot, steering, steering_dot, sin/cos(roll/pitch/yaw), roll_dot, pitch_dot, yaw_dot]
+Output: [roll_accln, pitch_accln, yaw_accln]
+Loss: Mean-squared prediction of angular accelerations.
+Data: Recorded vehicle trajectories the 2-axis Gimbal.
+
+
+## Training PHLI & RPMModel
+
+```bash
+python3 TrainingPipeline/train.py --config TrainingPipeline/conf/config.yaml
+python3 TrainingPipeline/rpm_train.py --config TrainingPipeline/conf/config_rpm.yaml
+```
+
+
+## Running the indoor and outdoor DOM planner 
+```bash
+python3 DOM_Planner/jump_planner.py 
+python3 DOM_Planner/Outdoor_jump_planner.py 
+```
