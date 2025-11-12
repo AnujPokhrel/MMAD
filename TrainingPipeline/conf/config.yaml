@@ -1,0 +1,97 @@
+# Training parameters
+train_params:
+  debug: False # use during development #Can be flipped to not log
+  # debug: True # use during development #Can be flipped to not log
+  epochs: 100
+  seed: 1372 # fixing random seed
+  device: cuda:0 # device name, values: "cpu" or "cuda:x" where 'x' is gpu index, or "cuda:a" to use all GPUs
+  optimizer: adamw
+  save_every: 100
+  grad_clipping: 1.0 # set to zero to disable grad clipping
+  start_saving_best: 50 # start epoch of saving best model
+  visualize_every: 1
+  lambda_: 0.0
+  early_stopping:
+    enabled: True
+    patience: 10
+    delta: 0.01
+
+# Logger parameters
+logger:
+  workspace: # workspace name
+  project: # project name
+  experiment_name: shifted_accln_gt  # name of the experiment
+  tags: "un_norm_tanh_manual"
+  resume: False # (boolean) whether to resume training or not
+  online: True # (boolean) whether to store logs online or not
+  experiment_key: "" # can be retrieved from logger dashboard, available if only resuming
+  offline_directory: "./logs" # where to store log data
+  disabled: False # disable the comet ml
+  upload_model: False # upload model to comet
+  log_env_details: False
+  auto_histogram_weight_logging: True # allows you to enable/disable histogram logging for biases and weights
+  auto_histogram_gradient_logging: True # allows you to enable/disable automatic histogram logging of gradients
+  auto_histogram_activation_logging: True # allows you to enable/disable automatic histogram logging of activations
+
+# Dataloader parameters
+dataloader:
+  num_workers: 16 # Allowing multi-processing
+  batch_size: 64 
+  shuffle: True # whether to shuffle data or not
+  pin_memory: True # use pageable memory or pinned memory (https://developer.nvidia.com/blog/how-optimize-data-transfers-cuda-cc/)
+
+# Train dataset parameters
+dataset:
+  root: TrainingPipeline/AcclnData/trainingPkl  # samples.pkl directory
+  data_stats: stats_physics_cvel.pkl
+
+# Validation dataset parameters/ only change parameters that are different from train data
+val_dataset:
+  root: TrainingPipeline/AcclnData/validationPkl/ # samples.pkl directory
+  data_stats: stats_physics_cvel.pkl
+
+
+# directories
+directory:
+  model_name:  # file name for saved model
+  save: SavedModels
+  load: ""
+
+# models parameters
+model: None
+
+# AdamW parameters if using AdamW optimizer
+adamw:
+  lr: 5e-4
+  betas:
+    - 0.9
+    - 0.999
+  eps: 1e-8
+  weight_decay: 0.03
+  amsgrad: False
+
+adam:
+  lr: 5e-4
+  betas:
+    - 0.9
+    - 0.999
+  eps: 1e-8
+  weight_decay: 0.03
+  amsgrad: False
+
+# RMSprop parameters if using RMSprop optimizer
+rmsprop:
+  lr: 1e-3
+  momentum: 0
+  alpha: 0.99
+  eps: 1e-8
+  centered: False
+  weight_decay: 0
+
+# SGD parameters if using SGD optimizer
+sgd:
+  lr: 5e-2
+  momentum: 0 # momentum factor
+  weight_decay: 0 # weight decay (L2 penalty)
+  dampening: 0 # dampening for momentum
+  nesterov: False # enables Nesterov momentum
