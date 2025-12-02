@@ -4,6 +4,9 @@
 📄 **Checkout our paper:**  
 [Dom, Cars Don’t Fly! — Or Do They? (arXiv:2503.19140)](https://arxiv.org/abs/2503.19140)
 
+🎥 **Checkout our Video (We encourage you to watch till the end for interesting footage):** 
+[Video](https://www.youtube.com/watch?v=jW-c0OP8pQQ)
+
 ---
 
 ![CombinedTrajectories](./CombinedTrajectories.png)
