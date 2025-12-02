@@ -60,3 +60,20 @@ python3 TrainingPipeline/rpm_train.py --config TrainingPipeline/conf/config_rpm.
 python3 DOM_Planner/jump_planner.py 
 python3 DOM_Planner/Outdoor_jump_planner.py 
 ```
+
+## Citation
+If you found this work useful, please cite our manuscript:
+
+```bibtex
+@INPROCEEDINGS{pokhrel2024dom,
+  author={Pokhrel, Anuj and Datar, Aniket and Xiao, Xuesu},
+  booktitle={2025 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
+  title={Dom, cars don’t fly!—Or do they? In-Air Vehicle Maneuver for High-Speed Off-Road Navigation}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={21325-21332},
+  keywords={Accuracy;Navigation;Atmospheric modeling;Machine learning;Land vehicles;Automobiles;Physics;Intelligent robots},
+  doi={10.1109/IROS60139.2025.11246862}
+}
+```
