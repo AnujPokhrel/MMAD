@@ -36,8 +36,11 @@ pip install -r requirements.txt
 
 ## Neural Model Details
 Input: [rpm, rpm_dot, steering, steering_dot, sin/cos(roll/pitch/yaw), roll_dot, pitch_dot, yaw_dot]
+
 Output: [roll_accln, pitch_accln, yaw_accln]
+
 Loss: Mean-squared prediction of angular accelerations.
+
 Data: Recorded vehicle trajectories the 2-axis Gimbal.
 
 
