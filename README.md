@@ -27,7 +27,7 @@ DOM is the first approach to demonstrate that **existing ground vehicle controls
 Clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/<your-username>/MMAD.git
+git clone https://github.com/AnujPokhrel/MMAD.git
 cd MMAD
 python3 -m venv venv
 source venv/bin/activate
